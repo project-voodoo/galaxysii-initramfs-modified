@@ -157,7 +157,8 @@ on post-fs
     # We chown/chmod /data again so because mount is run as root + defaults
     # use movinand second partition as /data.
     mkdir /data
-    #mount rfs /dev/block/mmcblk0p10 /data nosuid nodev check=no
+
+    exec check_filesystem /dev/block/mmcblk0p10 ext4
     mount ext4 /dev/block/mmcblk0p10 /data nosuid nodev noatime wait crypt discard,noauto_da_alloc
     chown system system /data
     chmod 0771 /data
@@ -841,9 +842,7 @@ on property:encryption.bootmode=remount
     stop tvout
     stop media
     stop immvibed
-    stop zygote
-    
-    #exec apply_system_policy /dev/block/mmcblk0p10 ext4
+    stop zygote   
 
     mount ext4 /dev/block/mmcblk0p10 /data nosuid nodev noatime wait usedm discard,noauto_da_alloc
     chown system system /data
