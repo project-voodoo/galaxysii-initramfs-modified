@@ -4,7 +4,7 @@ DEST=/system/xbin/su
 mount -o remount,rw /system /system
 
 # copy files
-cat /vendor/files/su-2.3.6.1-ef > $DEST
+cat /vendor/files/su-2.3.6.2-ef > $DEST
 cat /vendor/files/Superuser.apk > /system/app/Superuser.apk
 
 # set su permissions
